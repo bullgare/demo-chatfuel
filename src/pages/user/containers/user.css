@@ -1,0 +1,9 @@
+.form-group {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.form-group .text-danger {
+  position: absolute;
+  bottom: 0;
+}
