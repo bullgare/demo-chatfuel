@@ -20,7 +20,7 @@ class App extends Component {
             <h2 className="text-center">#42. This is ma bot.</h2>
           </header>
           <div>
-            <BrowserRouter>
+            <BrowserRouter basename="/demo-chatfuel">
               <Switch>
                 <Route path="/users/:pageUrl/" component={UserList} />
                 <Route path="/user/:id/" component={User} />
