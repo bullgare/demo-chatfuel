@@ -16,6 +16,10 @@ class App extends Component {
     return (
       <Provider store={createStoreFromMiddleware(reducers)}>
         <div>
+          <h6 className="text-center">
+            <a href="https://github.com/bullgare/demo-chatfuel">Source code</a>
+          </h6>
+
           <header className="bg-light pt-4 pb-4">
             <h2 className="text-center">#42. This is ma bot.</h2>
           </header>
