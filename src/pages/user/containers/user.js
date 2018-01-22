@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
+import classNames from 'classnames';
 
 import { fetchUser, updateUser } from './actions';
 import { DEFAULT_AVATAR_URL } from '../../../shared/const';
@@ -13,7 +14,7 @@ class User extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { dataArrived: false, user: { name: 'aaa' } };
+    this.state = { dataArrived: false };
   }
 
   componentDidMount() {
@@ -21,7 +22,7 @@ class User extends Component {
 
     if (promise) {
       promise.then(() => {
-        this.setState({ dataArrived: true, user: { name: 'bbb' } });
+        this.setState({ dataArrived: true });
       });
     }
   }
@@ -64,15 +65,6 @@ class User extends Component {
     return '/';
   }
 
-  classNameBy(fieldValue) {
-    let className = 'form-control';
-    if (fieldValue.touched && !fieldValue.valid) {
-      className += ' is-invalid';
-    }
-
-    return className;
-  }
-
   render() {
     if (!this.dataArrived()) {
       return <div className="container text-center">Loading</div>;
@@ -108,7 +100,10 @@ class User extends Component {
               }}
               mapProps={{
                 className: ({fieldValue}) => {
-                  return this.classNameBy(fieldValue);
+                  return classNames(
+                    "form-control",
+                    { 'is-invalid': fieldValue.touched && !fieldValue.valid }
+                  );
                 },
               }} />
 
