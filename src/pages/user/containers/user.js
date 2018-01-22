@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { LocalForm, Control, Errors } from 'react-redux-form';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
 import { fetchUser, updateUser } from './actions';
 import { DEFAULT_AVATAR_URL } from '../../../shared/const';
@@ -126,6 +127,17 @@ class User extends Component {
     );
   }
 }
+
+User.propTypes = {
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+  }),
+  dataArrived: PropTypes.bool,
+  fetchUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired
+};
 
 function mapStateToProps({ user }) {
   return { user };

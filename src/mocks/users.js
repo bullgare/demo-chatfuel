@@ -23,7 +23,7 @@ export const singleUserById = (id) => {
 
 function generateUserById(id) {
   return {
-    id: id,
+    id: +id,
     name: `name${id}`,
     avatarUrl: getRandomURL(),
   };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { fetchUsers } from './actions';
 import { DEFAULT_AVATAR_URL } from '../../../shared/const';
@@ -102,6 +103,17 @@ class UserList extends Component {
     return escapeUrl(this.props.nextPageUrl);
   }
 }
+
+UserList.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
+  })),
+  previousPageUrl: PropTypes.string,
+  nextPageUrl: PropTypes.string,
+  fetchUsers: PropTypes.func.isRequired
+};
 
 function escapeUrl(url) {
   return window.encodeURIComponent(url);
