@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { DEFAULT_AVATAR_URL } from '../../../shared/const';
 import './user.css';
 
 
-class User extends Component {
+class User extends PureComponent {
   constructor(props) {
     super(props);
 
