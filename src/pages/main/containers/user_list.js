@@ -9,13 +9,12 @@ import './user_list.css';
 
 class UserList extends Component {
   componentDidMount() {
-    this.setState({ pageUrl: this.getKey() });
-    this.props.fetchUsers(this.getKey());
+    this.props.fetchUsers(this.getCurPage());
   }
 
   componentDidUpdate(prevProps) {
-    if (this.getKey() !== this.getKey(prevProps)) {
-      this.props.fetchUsers(this.getKey());
+    if (this.getCurPage() !== this.getCurPage(prevProps)) {
+      this.props.fetchUsers(this.getCurPage());
     }
   }
 
@@ -29,7 +28,7 @@ class UserList extends Component {
     );
   }
 
-  getKey(props=this.props) {
+  getCurPage(props=this.props) {
     if (!props.match) {
       return '';
     }
@@ -38,7 +37,7 @@ class UserList extends Component {
 
   generateLinkToForm(id) {
     let url = `/user/${id}/`;
-    const pageUrl = this.getKey();
+    const pageUrl = this.getCurPage();
     if (pageUrl) {
       url += `?from=${pageUrl}`;
     }
