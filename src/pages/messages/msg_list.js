@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { bindActionCreators } from "redux";
 import { fetchMessages } from "./actions";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class MsgList extends Component {
+class MsgList extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -28,7 +29,7 @@ class MsgList extends Component {
           <li key={msg.user.name} className="list-group-item">
             <div className="card-body">
               <div className="card-title">
-                {msg.user.name} {outputTime(msg.time)}
+                {msg.user.name} <span className="badge badge-dark">{msg.time.toString()}</span>
               </div>
 
               <div>{msg.text}</div>
@@ -39,13 +40,17 @@ class MsgList extends Component {
   }
 }
 
-function outputTime(time) {
-  if (!time) {
-    return <span></span>;
-  }
-
-  return <span className="badge badge-dark">{time.toString()}</span>;
-}
+MsgList.propTypes = {
+  messages: PropTypes.arrayOf(PropTypes.shape({
+    user: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string
+    }),
+    time: PropTypes.instanceOf(Date).isRequired,
+    text: PropTypes.string.isRequired
+  }))
+};
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchMessages }, dispatch);

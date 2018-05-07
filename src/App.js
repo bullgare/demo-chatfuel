@@ -27,7 +27,13 @@ class App extends Component {
           <div>
             <BrowserRouter basename="/demo-chatfuel">
               <div>
-                <div className="card"><Link to="/">users</Link> <Link to="/messages">messages</Link></div>
+                <div className="card">
+                  <div className="card-body">
+                    <Link to="/">users</Link>
+                    |
+                    <Link to="/messages">messages</Link>
+                  </div>
+                </div>
 
                 <Switch>
                   <Route path="/" component={UserList} exact={true} />
