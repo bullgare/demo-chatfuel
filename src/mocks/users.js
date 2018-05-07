@@ -19,7 +19,7 @@ export const singleUserById = (id) => {
   return {
     result: generateUserById(id)
   }
-}
+};
 
 function generateUserById(id) {
   return {
@@ -27,7 +27,7 @@ function generateUserById(id) {
     name: `name${id}`,
     avatarUrl: getRandomURL(),
   };
-};
+}
 
 const avatarURLs = [
   'http://www.fakepersongenerator.com/Face/female/female1026392491180.jpg',
